@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block pageheading %}
+Employees
+
+{% endblock %}
+
+{% block main %}
+<!--- this code only displays info for one employee, use jinja to repeat block for each employee. Reference each employeeby position in query list --->
+  <div class = "category-employees
+    ">
+    <ul>
+      {% for category in categories %}
+      <li><a href="/employees
+            /{{ category[0] }}">{{ category[1] }}</a></li>
+
+
+      {% endfor %}
+    </ul>
+  </div>
+<div class="employees">
+  {% for employee in employees %}
+        <h3>{{ employee[0] }} {{ employee [1]}} </h3>
+      </div>
+        <p>{{ employee [2]}} </p>
+        <p><strong> Contact: </strong> {{ employee[3] }}</p>
+        <p><strong> Location:</strong> {{ employee[4] }}</p>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}

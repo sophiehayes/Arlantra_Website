@@ -7,7 +7,7 @@ from flask import session
 app = Flask(__name__)
 bcrypt = Bcrypt(app)
 app.secret_key = "wegc1234"
-DATABASE = "plants.db"
+DATABASE = "arlantra.db"
 
 def create_connection(db_file):
   """create connection to database"""
@@ -24,21 +24,21 @@ def render_homepage():
 
 
 
-@app.route('/products/<cat_id>')
-def render_products_page(cat_id):
+@app.route('/employees/<EmployeeID>')
+def render_employees_page(EmployeeID):
   con = create_connection(DATABASE)
-  query = "SELECT name, description, size, image, price FROM products WHERE cat_id =?"
+  query = "SELECT FirstName, LastName, Email, Phone, Location FROM Employee WHERE EmployeeID =?"
   cur = con.cursor()
-  cur.execute(query, (cat_id, ))
-  product_list = cur.fetchall()
-  query = "SELECT id, name FROM category"
+  cur.execute(query, (EmployeeID, ))
+  employee_list = cur.fetchall()
+  query = "SELECT ExpertiseID, name FROM Expertise"
   cur = con.cursor()
   cur.execute(query)
-  category_list = cur.fetchall()
+  expertise_list = cur.fetchall()
 
   con.close()
-  print(product_list)
-  return render_template('products.html', products = product_list, categories = category_list)
+  print(employee_list)
+  return render_template('employees.html', employees = employee_list, expertises = expertise_list)
 
 
 @app.route('/contact')
@@ -48,7 +48,7 @@ def render_contact_page():
 @app.route('/login', methods = ['POST', 'GET'])
 def render_login_page():
   if is_logged_in():
-    return redirect('/products/1')
+    return redirect('/employees/1')
   print("Logging in")
   if request.method == 'POST':
     print(request.form)
