@@ -1,39 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title> Arlantra | home</title>
+    <title>Arlantra | Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"/>
-    <link href="{{ url_for('static', filename='arlantra.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='arlantra.css') }}" rel="stylesheet"> <!-- Link to your stylesheet -->
 </head>
 
 <body>
-<nav>
+    <header>
+        <div class="logo">
+            <img src="/static/arlantra.png" alt="Arlantra Logo">
+        </div>
+        <div class="header-content">
+            <h1>Arlantra</h1>
+            <p class="tagline">Leading Consultancy Services</p>
+            <h2>{% block pageheading %}{% endblock %}</h2>
+        </div>
+    </header>
+    <nav>
+        <div class="container">
+            <div class="navbar-links">
+                <a href="/">home</a>
+                <a href="/employees/1">consultants</a>
+                <a href="/contact">contact</a>
+                <a href="/login">login</a>
+                <a href="/admin">admin</a>
+            </div>
+        </div>
+    </nav>
+
     <div class="container">
-        <div class="navbar-brand"> Arlantra.</div>
-        <div class="navbar-links">
-            <a href="/">home</a>
-            <a href="/employees/1"> consultants </a>
-            <a href="/contact">contact</a>
-            <a href="/login">login</a>
-            <a href="/admin">admin</a>
+
+        <main class="text-box">
+            {% block main %}
+            {% endblock %}
+        </main>
+
+        <div class="image-box">
+            <img src="path-to-your-image.jpg" alt="Consultants Image">
         </div>
     </div>
-</nav>
-<div class="container">
-    <header>
-        <h1>Arlantra</h1>
-        <h2>{% block pageheading %}{% endblock %}</h2>
-    </header>
-
-    <main>
-        {% block main %}
-        {% endblock %}
-    </main>
-</div>
 </body>
 
 </html>
